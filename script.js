@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
+
+        const element = document.elementFromPoint(e.clientX, e.clientY);
+        if (element) {
+            cursor.style.backgroundColor = window.getComputedStyle(element).color;
+        }
     });
 
     document.querySelectorAll('a').forEach(link => {
@@ -23,13 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         link.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
         });
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        const element = document.elementFromPoint(e.clientX, e.clientY);
-        if (element) {
-            cursor.style.backgroundColor = window.getComputedStyle(element).color;
-        }
     });
 
     function getRandomPosition() {
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const starsContainer = document.getElementById("stars");
-    const numStars = 18;
+    const numStars = 100;
 
     for (let i = 0; i < numStars; i++) {
         createStar();
@@ -68,14 +66,14 @@ document.addEventListener("DOMContentLoaded", function() {
         if (currentSection) {
             if (currentSection !== targetSection) {
                 console.log('Switching section from', currentSection.id, 'to', targetSection.id);
-                currentSection.style.transition = 'opacity 2s ease-in-out';
+                currentSection.style.transition = 'opacity 1s ease-in-out';
                 currentSection.style.opacity = 0;
 
                 setTimeout(() => {
                     currentSection.style.display = 'none';
                     targetSection.style.display = 'flex';
                     targetSection.style.opacity = 0;
-                    targetSection.style.transition = 'opacity 2s ease-in-out';
+                    targetSection.style.transition = 'opacity 1s ease-in-out';
 
                     setTimeout(() => {
                         targetSection.style.opacity = 1;
@@ -84,13 +82,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (targetId === 'about') {
                         fadeInWords(wordSpans);
                     }
-                }, 2000);
+                }, 1000);
             }
         } else {
             console.log(`Showing section ${targetId}`);
             targetSection.style.display = 'flex';
             targetSection.style.opacity = 0;
-            targetSection.style.transition = 'opacity 2s ease-in-out';
+            targetSection.style.transition = 'opacity 1s ease-in-out';
 
             setTimeout(() => {
                 targetSection.style.opacity = 1;
@@ -107,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
 
             const introText = document.getElementById('intro-text');
-            introText.style.transition = 'opacity 2s ease-in-out';
+            introText.style.transition = 'opacity 1s ease-in-out';
             introText.style.opacity = 0;
 
             setTimeout(() => {
@@ -117,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const radius = 50;
                     const x = radius * Math.cos(angle * (Math.PI / 180));
                     const y = radius * Math.sin(angle * (Math.PI / 180));
-                    star.style.transition = 'transform 2s ease-in-out, opacity 2s ease-in-out';
+                    star.style.transition = 'transform 1s ease-in-out, opacity 1s ease-in-out';
                     star.style.transform = `translate(${x}px, ${y}px) scale(10, 2)`;
                     star.style.opacity = 0;
                 });
@@ -125,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(() => {
                     const targetId = link.getAttribute('href').substring(1);
                     switchSection(targetId);
-                }, 700);
-            }, 500);
+                }, 50);
+            }, 50);
         });
     });
 
@@ -157,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('anurag').addEventListener('mouseenter', function() {
         const emailSpan = document.createElement('span');
         emailSpan.classList.add('email');
-        emailSpan.textContent = 'anurg@gmx.com';
+        emailSpan.textContent = 'anurag@gmx.com';
         this.appendChild(emailSpan);
     });
 
