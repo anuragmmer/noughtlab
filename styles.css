@@ -128,8 +128,15 @@ body {
 }
 
 #menu {
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: right;
+    justify-content: right;
+    align-items: right;
 }
 
 #menu ul {
@@ -233,6 +240,7 @@ body {
     text-align: left;
     justify-content: left;
     align-items: center;
+
 }
 
 #about-text {
@@ -244,12 +252,14 @@ body {
 /* Contact Section Styles */
 #contact {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
+    justify-content: space-between;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: left;
-    padding: 0 10%;
+    justify-content: left;
+    align-items: center;
 }
 
 #contact-text {
