@@ -219,17 +219,18 @@ body {
 }
 
 /* Custom cursor styles */
+/* Custom cursor styles */
 .cursor {
     position: fixed;
-    width: 40px; /* Increased size */
-    height: 40px; /* Increased size */
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
     border-radius: 50%;
     background-color: #fff;
     pointer-events: none;
     mix-blend-mode: difference;
-    transition: transform 0.1s ease;
+    transition: width 1s ease, height 1s ease;
     z-index: 1000; /* Ensure it is above other elements */
-    
+    transform: scale(1); /* Initial scale */
 }
 
 /* About Section Styles */
