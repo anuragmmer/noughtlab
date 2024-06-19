@@ -276,7 +276,6 @@ body {
 
 .contact-item .role {
     color: grey;
-
     margin-bottom: 0.5rem;
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
@@ -286,9 +285,9 @@ body {
     opacity: 0;
     transform: translateY(100%);
     color: white;
-    position: absolute;
-    left: 0;
-    top: 100%; /* Position below name and role */
+    position: absolute; /* Ensure email spans are positioned absolutely */
+    left: 0; /* Align to the left */
+    top: 100%; /* Start below the name and role */
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
@@ -302,3 +301,4 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
