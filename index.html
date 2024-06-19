@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoughtLab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="stars"></div>
+    <div id="loader">
+        <div id="logo-container">
+            <img src="logo.svg" alt="NoughtLab Logo">
+        </div>
+    </div>
+    <div id="content" class="hidden">
+        <div id="intro-text">
+            <p><b>NoughtLab</b> is an endeavour to define possibilities larger than life.</p>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><b><a href="#about">About</a></b></li>
+                <li><b><a href="#projects">Projects</a></b></li>
+                <li><b><a href="#blog">Blog</a></b></li>
+                <li><b><a href="#contact">Contact</a></b></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="section" style="display: none;">
+        <div id="about-text"></div>
+    </div>
+
+<!-- Contact Section -->
+<div id="contact" class="section" style="display: none;">
+    <div id="contact-text">
+        <div id="anurag" class="contact-item">
+            <span class="name">Anurag</span><span class="role">Brand Designer</span>
+            <span class="email">anurag@example.com</span>
+        </div>
+        <div id="kumar" class="contact-item">
+            <span class="name">Kumar</span><span class="role">Consumer Researcher</span>
+            <span class="email">kumar@example.com</span>
+        </div>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
