@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    const aboutText = "NoughtLab is our collective endeavour to experiment with possibilities in various fields. We are a creative collective based in India. Our focus is to approach the field of art & commerce through commercialized experimentation for the better of everyone.";
+    const aboutText = "NoughtLab is a collaborative initiative dedicated to exploring diverse possibilities across various fields. Based in India, we are a creative collective that aims to blend artistry and commerce creatively. Our focus is to approach the field of art & commerce through commercialized experimentation for the better of everyone.";
     const aboutElement = document.getElementById('about-text');
 
     function createWordSpans(text) {
