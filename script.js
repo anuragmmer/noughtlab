@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(cursor);
 
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+        cursor.style.left = e.clientX - cursorWidth / 2) + 'px';
+        cursor.style.top = e.clientY - cursorWidth / 2) + 'px';
 
         const element = document.elementFromPoint(e.clientX, e.clientY);
         if (element) {
