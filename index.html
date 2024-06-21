@@ -4,54 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoughtLab</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .content {
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            opacity: 0;
+            filter: blur(10px);
+        }
+        .menu {
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 25px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .menu a.active {
+            color: #333;
+        }
+        .visible {
+            opacity: 1;
+            filter: blur(0);
+            pointer-events: auto;
+        }
+        .home-text {
+            font-size: 1.6em;
+        }
+        .contacts {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .contact-details {
+            margin-bottom: 28px;
+            text-align: left;
+            flex: 1 1 calc(50% - 20px);
+            box-sizing: border-box;
+        }
+        .contact-name {
+            font-weight: bold;
+            font-size: 1.6em;
+            display: block;
+        }
+        .contact-role {
+            font-size: 0.6em;
+            color: #aaaaaa;
+            display: block;
+        }
+        .contact-email {
+            font-size: 0.8em;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 0 10px;
+            }
+            .contact-details {
+                flex: 1 1 100%;
+                margin: 0 0 20px 0;
+                padding: 0 10px;
+            }
+        }
+
+        /* Intro Animation Styles */
+        .intro-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .intro-circle {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slide-and-disappear {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+                filter: blur(0);
+            }
+            100% {
+                transform: translate(var(--cursor-x), var(--cursor-y));
+                opacity: 0;
+                filter: blur(10px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="stars"></div>
-    <div id="loader">
-        <div id="logo-container">
-            <img src="logo.svg" alt="NoughtLab Logo">
-        </div>
+    <div class="intro-animation">
+        <div class="intro-circle"></div>
     </div>
-    <div id="content" class="hidden">
-        <div id="intro-text">
-            <p>•<b>Nought</b>Lab• is our lifelong endeavour to define possibilities bigger than our imagination.</p>
-        </div>
-        <div id="menu">
-            <ul>
-                <li><b><a href="#about">About</a></b></li>
-                <li><b><a href="#projects">Projects</a></b></li>
-                <li><b><a href="#blog">Blog</a></b></li>
-                <li><b><a href="#contact">Contact</a></b></li>
-            </ul>
-        </div>
-    </div>
+    <div class="content" id="home">
+        <p class="home-text">
+            NoughtLab is a collaborative initiative dedicated to exploring diverse possibilities across various fields. Based in India, we are a creative collective that aims to blend artistry and commerce creatively. Our focus is to approach the field of art & commerce through commercialized experimentation for the better of everyone. <p> •♥• </p>
+        </p>
 
-    <!-- About Section -->
-    <div id="about" class="section" style="display: none;">
-        <div id="about-text"></div>
     </div>
-
-    <!-- Projects Section -->
-    <div id="projects" class="section" style="display: none;">
-        <!-- Project links here -->
+    <div class="content" id="about">
+        <p>
+           We are a dedicated duo working at the intersection of various industries. Our aim is to explore these intersections through commercial experimentation. We are currently based in India and are working on launching our biggest project: Comn Creative Lab.
+        </p>
     </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="section" style="display: none;">
-        <div id="contact-text">
-            <div id="anurag" class="contact-item">
-                <span class="name">Anurag Kumar</span><span class="role">Brand Designer</span>
-                <span class="email">anurg@gmx.com</span>
+    <div class="content" id="contact">
+        <div class="contacts">
+            <div class="contact-details">
+                <span class="contact-name">Anurag Kumar</span>
+                <span class="contact-role">Brand Designer</span>
+                <a href="mailto:anurg@gmx.com" class="contact-email">anurg@gmx.com</a>
             </div>
-            <div id="kumar" class="contact-item">
-                <span class="name">Kumar Aadarsh</span><span class="role">Consumer Researcher</span>
-                <span class="email">arsh.kumar.aadarsh@gmail.com</span>
+            <div class="contact-details">
+                <span class="contact-name">Kumar Aadarsh</span>
+                <span class="contact-role">Consumer Researcher</span>
+                <a href="mailto:arsh.kumar.aadarsh@gmail.com" class="contact-email">arsh.kumar.aadarsh@gmail.com</a>
             </div>
         </div>
     </div>
+    <div class="menu">
+        <a href="#" class="active" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('about')">About</a>
+        <a href="#" onclick="showSection('contact')">Contact</a>
+        <a href="https://noughtlab.substack.com" target="_blank">Blog</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const introCircle = document.querySelector('.intro-circle');
+            const introAnimation = document.querySelector('.intro-animation');
+            const contents = document.querySelectorAll('.content');
 
-    <script src="script.js"></script>
+            // Set initial content to hidden
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Animate the circle appearance
+            introCircle.style.animation = 'appear 1.5s forwards';
+
+            // Capture cursor position when mouse moves
+            let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
+            document.addEventListener('mousemove', (e) => {
+                cursorX = e.clientX;
+                cursorY = e.clientY;
+            });
+
+            // After the circle appears, start the sliding animation
+            setTimeout(() => {
+                const x = cursorX - window.innerWidth / 2 + 50; // Adjusted for circle's center
+                const y = cursorY - window.innerHeight / 2 + 50; // Adjusted for circle's center
+                introCircle.style.setProperty('--cursor-x', `${x}px`);
+                introCircle.style.setProperty('--cursor-y', `${y}px`);
+
+                introCircle.style.animation = 'slide-and-disappear 1.5s ease-in-out forwards';
+
+                introCircle.addEventListener('animationend', () => {
+                    introAnimation.style.display = 'none';
+                    document.querySelector('.content#home').classList.add('visible');
+                });
+            }, 1500);
+        });
+
+        function showSection(sectionId) {
+            // Hide all sections and remove active class from menu links
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.remove('visible');
+            });
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Show the selected section and add active class to the clicked menu link
+            document.getElementById(sectionId).classList.add('visible');
+            document.querySelector(`.menu a[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
 </body>
 </html>
