@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoughtLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fff;
+            --text-color: #000;
+            --inverse-bg-color: #fff;
+            --inverse-text-color: #000;
+            --bg-color-rgb: 255, 255, 255;
+            --text-color-rgb: 0, 0, 0;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter Tight', sans-serif;
+            line-height: 1.4;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark-mode {
+            --bg-color: #161616;
+            --text-color: #f7f7f7;
+            --inverse-bg-color: #161616;
+            --inverse-text-color: #f7f7f7;
+            --bg-color-rgb: 0, 0, 0;
+            --text-color-rgb: 255, 255, 255;
+        }
+        .intro-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-text {
+            font-optical-sizing: auto;
+            font-weight: 448;
+            font-style: normal;
+            font-size: 2em;
+            max-width: 800px;
+            text-align: center;
+            transition: all 0.5s ease;
+            z-index: 2;
+            color: var(--text-color);
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1s ease, filter 1s ease;
+            filter: blur(0px) brightness(0.7);
+            border: none;
+            pointer-events: none;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            animation: bounce 2s infinite;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-30px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--inverse-bg-color);
+            color: var(--inverse-text-color);
+            padding: 20px 0;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .header-text {
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.2em;
+            white-space: nowrap;
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+        .content-section {
+            padding: 50px;
+                margin-bottom: 1px; /* Adjust this value to reduce the space */
+
+        }
+        .section-heading {
+            font-optical-sizing: auto;
+            font-size: 28px;
+            font-weight: 500;
+            font-style: normal;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            display: inline-block;
+        }
+        .item {
+            margin-bottom: 15px;
+        }
+        .item-title {
+            font-optical-sizing: auto;
+            font-weight: 448;
+            font-style: normal;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .item-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .item-title:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .item-title:hover::before {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease, right 0.3s ease;
+        }
+        .item-title:hover::before {
+            opacity: 1;
+            right: -20px;
+        }
+        .footer {
+            padding: 20px 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 20px;
+            position: relative;
+        }
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .copyright {
+            font-size: 0.9em;
+        }
+        .dark-mode-toggle {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .blur {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+        .modal-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .modal-content {
+            max-width: 800px;
+            font-size: 1.5rem;
+            width: 80%;
+            padding: 40px;
+            color: var(--text-color);
+            text-align: left;
+        }
+        .modal-content p, .modal-content .contact-info {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .modal-content p1 {
+            font-size: 0.8rem;
+            color: #5a5a5a;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .modal-content p2 {
+            font-size: 1rem;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'Inter Tight', sans-serif;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .back-button::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .back-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .back-arrow {
+            margin-right: 5px;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        .contact-info h3 {
+            margin-bottom: 2px;
+        }
+        @media (max-width: 768px) {
+            .intro-text {
+                font-size: 1.5em;
+            }
+            .content-section {
+                padding: 30px;
+            }
+            .footer {
+                flex-direction: row;
+                border-top: solid 1px rgb(0, 0, 0);
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+            .footer-links {
+                margin-bottom: 5px;
+            }
+            .modal-content {
+                max-width: 90%;
+                padding: 20px 5%;
+                font-size: 1.2rem;
+            }
+            .modal-content p1 {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">💡</button>
+    
+    <div class="main-content">
+        <div class="intro-section">
+            <video class="video-background" id="intro-video" loop muted playsinline autoplay disableRemotePlayback>
+                <source src="assets/intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="intro-text">
+                NoughtLab is our lifelong endeavour to explore, understand and contribute to possibilities.
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </div>
+
+        <div class="header">
+            <div class="header-text">
+                NoughtLab is our lifelong endeavour to explore, understand and contribute to possibilities. &nbsp;
+            </div>
+        </div>
+
+
+        <div class="content-section">
+            <h2 class="section-heading" id="blogs-heading">Blogs</h2>
+
+            <div class="item">
+                <a href="what_is_noughtlab.html" class="item-title">What is NoughtLab?</a>
+            </div>
+
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-heading" id="projects">Projects</h2>
+
+            <div class="item">
+                <a href="#" class="item-title">Upcoming: Comn Creative Lab</a>
+            </div>
+
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-heading" id="books-heading">Book Notes</h2>
+
+            <div class="item">
+                <a href="#" class="item-title">Upcoming: Thinking in Systems by Donella</a>
+            </div>
+
+            <div class="item">
+                <a href="#" class="item-title">Upcoming: The Design of Everyday Things by Don Norman</a>
+            </div>
+
+        </div>
+
+
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#" id="about-link">About</a>
+                <a href="#" id="contact-link">Contact</a>
+            </div>
+            <div class="copyright">© NoughtLab 2024 - ∞</div>
+        </div>
+    </div>
+
+    <div class="modal-section" id="about-section">
+        <div class="modal-content">
+            <p>NoughtLab is a personal project of ours specifically to celebrate and share our motivation for learning and exploring. Not bound by a field or area, our interests are continuously expanding, and we are currently exploring more about economics, consumerism, behaviorisms, psychology, market research, and design. We will be sharing everything we learn & do here, in this space.</p>
+            <a href="#" class="back-button" data-modal="about-section"><span class="back-arrow">←</span> Back</a>
+        </div>
+    </div>
+
+    <div class="modal-section" id="contact-section">
+        <div class="modal-content">
+            <div class="contact-info">
+                <h3>Anurag Kumar</h3>
+                <p1>Brand Designer, Lead Researcher</p1>
+                <p2 href="mailto:anurg@gmx.com">anurg@gmx.com</p2>
+            </div>
+            <div class="contact-info">
+                <h3>Kumar Aadarsh</h3>
+                <p1>Consumer Researcher</p1>
+                <p2>arsh.kumar.aadarsh@gmail.com</p2>
+            </div>
+            <a href="#" class="back-button" data-modal="contact-section"><span class="back-arrow">←</span> Back</a>
+        </div>
+    </div>
+
+    <script>
+        document.body.classList.add('dark-mode');
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        window.addEventListener('scroll', function() {
+            const introSection = document.querySelector('.intro-section');
+            const introText = document.querySelector('.intro-text');
+            const header = document.querySelector('.header');
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            
+            const scrollPosition = window.scrollY;
+            const introHeight = introSection.offsetHeight;
+            
+            if (scrollPosition > introHeight * 0.7) {
+                header.style.transform = 'translateY(0)';
+                introText.style.opacity = '0';
+            } else {
+                header.style.transform = 'translateY(-100%)';
+                introText.style.opacity = '1';
+            }
+
+            if (scrollPosition > 50) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+            }
+        });
+
+        function openModal(modalId) {
+            document.querySelector('.main-content').classList.add('blur');
+            const modalSection = document.getElementById(modalId);
+            modalSection.style.display = 'flex';
+            setTimeout(() => {
+                modalSection.style.opacity = '1';
+                const modalContent = modalSection.querySelector('.modal-content');
+                const paragraphs = modalContent.querySelectorAll('p, .contact-info');
+                const backButton = modalContent.querySelector('.back-button');
+                paragraphs.forEach((paragraph, index) => {
+                    setTimeout(() => {
+                        paragraph.style.opacity = '1';
+                        paragraph.style.transform = 'translateY(0)';
+                    }, 200 * (index + 1));
+                });
+                setTimeout(() => {
+                    backButton.style.opacity = '1';
+                    backButton.style.transform = 'translateY(0)';
+                }, 200 * (paragraphs.length + 1));
+            }, 50);
+        }
+
+        function closeModal(modalId) {
+            const modalSection = document.getElementById(modalId);
+            const modalContent = modalSection.querySelector('.modal-content');
+            const paragraphs = modalContent.querySelectorAll('p, .contact-info');
+            const backButton = modalContent.querySelector('.back-button');
+
+            backButton.style.opacity = '0';
+            backButton.style.transform = 'translateY(20px)';
+
+            paragraphs.forEach((paragraph, index) => {
+                setTimeout(() => {
+                    paragraph.style.opacity = '0';
+                    paragraph.style.transform = 'translateY(20px)';
+                }, 100 * index);
+            });
+
+            setTimeout(() => {
+                modalSection.style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.main-content').classList.remove('blur');
+                    modalSection.style.display = 'none';
+                }, 500);
+            }, 100 * paragraphs.length);
+        }
+
+        document.getElementById('about-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('about-section');
+        });
+
+        document.getElementById('contact-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('contact-section');
+        });
+
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeModal(this.getAttribute('data-modal'));
+            });
+        });
+
+        // Background video functionality
+        const video = document.getElementById('intro-video');
+
+        video.addEventListener('loadeddata', function() {
+            // Video is loaded and can be played
+            video.play().catch(error => {
+                console.error("Auto-play was prevented:", error);
+                // You might want to add a play button here if auto-play is consistently blocked
+            });
+            setTimeout(() => {
+                video.style.opacity = '1';
+            }, 100);
+        });
+
+        video.addEventListener('ended', function() {
+            // Video playback has ended, restart it
+            video.currentTime = 0;
+            video.play().catch(error => {
+                console.error("Restarting video failed:", error);
+            });
+        });
+
+    </script>
+</body>
+</html>
