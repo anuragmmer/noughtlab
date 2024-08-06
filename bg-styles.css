@@ -1,4 +1,4 @@
-/* styles.css */
+
 :root {
     --bg-color: #f7f7f7;
     --text-color: #161616;
@@ -90,14 +90,14 @@ a:hover {
     cursor: pointer;
 }
 
-/* Dark mode styles */
+/* dark mode */
 body.dark-mode {
     --bg-color: #161616;
     --text-color: #f7f7f7;
     --header-bg: rgba(26, 26, 26, 0.9);
 }
 
-/* Mobile responsive styles */
+/* mobile responsive */
 @media (max-width: 600px) {
     body {
         padding: 10px;
