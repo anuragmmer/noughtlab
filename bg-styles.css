@@ -1,3 +1,4 @@
+
 :root {
     --bg-color: #f7f7f7;
     --text-color: #161616;
@@ -62,21 +63,11 @@ h1 {
     margin-bottom: 2em;
 }
 
-.content {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .content p {
     margin-bottom: 1.5em;
     font-size: 1.2rem
 }
+
 
 a {
     color: #0066cc;
@@ -99,14 +90,14 @@ a:hover {
     cursor: pointer;
 }
 
-/* dark mode hehe */
+/* dark mode */
 body.dark-mode {
     --bg-color: #161616;
     --text-color: #f7f7f7;
     --header-bg: rgba(26, 26, 26, 0.9);
 }
 
-/* mobile responsive hehe*/
+/* mobile responsive */
 
 @media (max-width: 600px) {
     body {
@@ -129,4 +120,6 @@ body.dark-mode {
     .content {
         margin-top: 50px; 
     }
+    
+
 }
