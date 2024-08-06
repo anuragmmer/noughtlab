@@ -123,7 +123,7 @@
         }
         .content-section {
             padding: 50px;
-                margin-bottom: 1px; /* Adjust this value to reduce the space */
+                margin-bottom: 0px;
 
         }
         .section-heading {
@@ -507,14 +507,13 @@
             });
         });
 
-        // Background video functionality
-        const video = document.getElementById('intro-video');
 
+        const video = document.getElementById('intro-video');
         video.addEventListener('loadeddata', function() {
-            // Video is loaded and can be played
+
             video.play().catch(error => {
                 console.error("Auto-play was prevented:", error);
-                // You might want to add a play button here if auto-play is consistently blocked
+
             });
             setTimeout(() => {
                 video.style.opacity = '1';
@@ -522,7 +521,6 @@
         });
 
         video.addEventListener('ended', function() {
-            // Video playback has ended, restart it
             video.currentTime = 0;
             video.play().catch(error => {
                 console.error("Restarting video failed:", error);
