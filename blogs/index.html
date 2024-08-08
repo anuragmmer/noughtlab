@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-RJGYG67PS4');
+      </script>
+      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:description" content="Raw thoughts, observations, discussions & updates." />
+    <meta property="og:image" content="https://anuragmmer.github.io/noughtlab/meta/blogs.png" />
+    <meta property="og:url" content="https://noughtlab.com/blogs" />
+    <meta property="og:type" content="website" />
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blogs | NoughtLab">
+    <meta name="twitter:description" content="Raw thoughts, observations, discussions & updates.">
+    <meta name="twitter:image" content="https://anuragmmer.github.io/noughtlab/meta/blogs.png">
+    <meta name="twitter:site" content="@NoughtLab">
+
+    <title>NoughtLab Blogs</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/anuragmmer/noughtlab/main/meta/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300&family=Manrope:wght@100;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #161616;
+            --text-color: #f7f7f7;
+            --header-bg: rgba(26, 26, 26, 0.9);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--header-bg);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s;
+            transform: translateY(-100%);
+        }
+
+        header.visible {
+            transform: translateY(0);
+        }
+
+        #header-title {
+            font-size: 2em;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70%;
+        }
+
+        #logo {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 100;
+            font-size: 1.2em;
+        }
+
+        .horizontal-line {
+            border: none;
+            height: 1px;
+            background-color: var(--text-color);
+            margin: 0.8rem 0;
+            opacity: 10%;
+        }
+
+        .blog-list {
+            margin-bottom: 4rem;
+        }
+         
+        .back-link {
+            margin-top: 2em;
+            margin-bottom: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            color: #f7f7f7;
+            opacity: 50%;
+            
+        }
+
+
+        .description {
+            font-family: 'Inter Tight', sans-serif;
+            margin-bottom: 1rem;
+            font-weight: 100;
+            font-size: 0.9rem;
+            opacity: 100%;
+            color: #607d8b;
+        }
+
+        .blog-preview {
+            margin-top: 2rem;
+            margin-bottom: -1rem;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .blog-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-color);
+            transform-origin: bottom right;
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+
+        .blog-title:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px; 
+                margin-top: 25vh;
+            }
+
+            #header-title {
+                font-size: 1.2em;
+            }
+
+            #logo {
+                font-size: 1em;
+            }
+
+            .content {
+                margin-top: 50px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="header-title">NoughtLab Blogs</h1>
+        <div id="logo">Noughtlab</div>
+    </header>
+
+    <div class="main-content">
+        <section class="content-section">
+            <p class="description">
+                Raw thoughts, observations, discussions & updates.
+            </p>
+            <hr class="horizontal-line">
+
+        <section class="blog-list">
+
+
+            <div class="blog-preview">
+                <a href="wht-nlb.html" class="blog-title">What is NoughtLab?</a>
+            </div>
+
+
+
+        </section>
+
+            <div class="back-button">
+                <a href="/" class="back-link">← Back to home</a>
+            </div>
+            
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            const headerTitle = document.getElementById('header-title');
+            const logo = document.getElementById('logo');
+            const originalTitle = headerTitle.textContent;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('visible');
+                    headerTitle.style.display = 'block';
+                    logo.style.display = 'none';
+                } else {
+                    header.classList.remove('visible');
+                    headerTitle.textContent = originalTitle;
+                    logo.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
