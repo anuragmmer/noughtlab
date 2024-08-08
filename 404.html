@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5;url=https://noughtlab.com">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            background-color: #161616;
+            color: #cf2323;
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .message {
+            font-size: 1.5rem;
+            animation: fadeInOut 1s ease-in-out;
+            max-width: 80%;
+        }
+
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            .message {
+                font-size: 1.2rem;
+                max-width: 80%
+            }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap');
+    </style>
+</head>
+<body>
+    <div class="message">
+        [Error: 404] Nought in our name represents the beginning of something but this was at the end of our imagination!
+    </div>
+</body>
+</html>
