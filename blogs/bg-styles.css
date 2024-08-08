@@ -70,12 +70,9 @@ h1 {
 
 
 a {
-    color: #0066cc;
+    color: #f7f7f7;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    opacity: 50%;
 }
 
 .back-link {
