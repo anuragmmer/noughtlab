@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fullscreenImageContainer.style.transform = 'scale(1)';
             fullscreenImageContainer.style.opacity = '1';
         }, 50);
+        document.body.style.overflow = 'hidden';
     }
 
     function updateFullscreenImage() {
@@ -119,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             viewer.classList.remove('active');
         }, 300);
+        document.body.style.overflow = 'auto';
     }
 
     leftArrow.addEventListener('click', () => {

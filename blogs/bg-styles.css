@@ -60,7 +60,7 @@ h1 {
 .meta {
     color: #888;
     font-size: 0.9em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .content p {
@@ -115,7 +115,7 @@ body.dark-mode {
     }
 
     .content {
-        margin-top: 50px; 
+        margin-top: 20px; 
     }
     
 
