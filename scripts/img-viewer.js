@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 fullscreenImageContainer.style.opacity = '1';
             }, 50);
             document.body.style.overflow = 'hidden';
+            // Add a new history state when opening the fullscreen viewer
+            history.pushState({ fullscreenOpen: true }, '');
         }
 
         function updateFullscreenImage() {
@@ -133,6 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         closeButton.addEventListener('click', closeFullscreen);
 
+        viewer.addEventListener('click', (e) => {
+            if (e.target === viewer) {
+                closeFullscreen();
+            }
+        });
+
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -147,13 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function handleSwipe() {
             if (touchEndX < touchStartX) {
-                // swipe left hehe
+                // swipe left
                 if (currentImageIndex < images.length - 1) {
                     currentImageIndex++;
                     updateFullscreenImage();
                 }
             } else if (touchEndX > touchStartX) {
-                // swipe right hehe
+                // swipe right
                 if (currentImageIndex > 0) {
                     currentImageIndex--;
                     updateFullscreenImage();
@@ -173,6 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => {
             if (viewer.classList.contains('active')) {
                 updateFullscreenImage();
+            }
+        });
+
+        window.addEventListener('popstate', () => {
+            if (viewer.classList.contains('active')) {
+                closeFullscreen();
             }
         });
     });
