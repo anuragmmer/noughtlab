@@ -43,6 +43,15 @@ h1 {
     margin-bottom: 0.2em;
 }
 
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #607d8b;
+    margin-bottom: 0.2em;
+}
+
 #header-title {
     font-size: 2em;
     margin: 0;
