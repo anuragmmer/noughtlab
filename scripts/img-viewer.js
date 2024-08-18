@@ -11,15 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="fullscreen-image-container">
                 <img class="fullscreen-image" src="" alt="Fullscreen image">
             </div>
-            <div class="nav-arrow left">&lt;</div>
-            <div class="nav-arrow right">&gt;</div>
-            <div class="image-indicator"></div>
+            <div class="nav-container">
+                <div class="nav-arrow left">&lt;</div>
+                <div class="image-indicator"></div>
+                <div class="nav-arrow right">&gt;</div>
+            </div>
             <div class="close-button">&times;</div>
         `;
         document.body.appendChild(viewer);
 
         const fullscreenImageContainer = viewer.querySelector('.fullscreen-image-container');
         const fullscreenImage = viewer.querySelector('.fullscreen-image');
+        const navContainer = viewer.querySelector('.nav-container');
         const leftArrow = viewer.querySelector('.nav-arrow.left');
         const rightArrow = viewer.querySelector('.nav-arrow.right');
         const imageIndicator = viewer.querySelector('.image-indicator');
@@ -71,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 fullscreenImageContainer.style.opacity = '1';
             }, 50);
             document.body.style.overflow = 'hidden';
-            // Add a new history state when opening the fullscreen viewer
             history.pushState({ fullscreenOpen: true }, '');
+            updateNavStyles();
         }
 
         function updateFullscreenImage() {
@@ -119,6 +122,60 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'auto';
         }
 
+        function updateNavStyles() {
+            const elements = [leftArrow, rightArrow, imageIndicator];
+            elements.forEach(el => {
+                el.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
+            });
+        
+            if (window.innerWidth <= 768) {
+                navContainer.style.position = 'fixed';
+                navContainer.style.bottom = '20px';
+                navContainer.style.left = '50%';
+                navContainer.style.transform = 'translateX(-50%)';
+                navContainer.style.display = 'flex';
+                navContainer.style.justifyContent = 'space-between';
+                navContainer.style.alignItems = 'center';
+                navContainer.style.width = '80%';
+                navContainer.style.maxWidth = '300px';
+        
+                // Reset individual element styles
+                [leftArrow, rightArrow, imageIndicator].forEach(el => {
+                    el.style.position = 'static';
+                    el.style.top = 'auto';
+                    el.style.left = 'auto';
+                    el.style.right = 'auto';
+                    el.style.bottom = 'auto';
+                    el.style.transform = 'none';
+                });
+            } else {
+                navContainer.style.position = '';
+                navContainer.style.bottom = '';
+                navContainer.style.left = '';
+                navContainer.style.transform = '';
+                navContainer.style.display = '';
+                navContainer.style.justifyContent = '';
+                navContainer.style.alignItems = '';
+                navContainer.style.width = '';
+                navContainer.style.maxWidth = '';
+        
+                leftArrow.style.position = 'absolute';
+                leftArrow.style.top = '50%';
+                leftArrow.style.left = '20px';
+                leftArrow.style.transform = 'translateY(-50%)';
+        
+                rightArrow.style.position = 'absolute';
+                rightArrow.style.top = '50%';
+                rightArrow.style.right = '20px';
+                rightArrow.style.transform = 'translateY(-50%)';
+        
+                imageIndicator.style.position = 'absolute';
+                imageIndicator.style.bottom = '20px';
+                imageIndicator.style.left = '50%';
+                imageIndicator.style.transform = 'translateX(-50%)';
+            }
+        }
+
         leftArrow.addEventListener('click', () => {
             if (currentImageIndex > 0) {
                 currentImageIndex--;
@@ -141,34 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        fullscreenImageContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
-
-        fullscreenImageContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX) {
-                // swipe left
-                if (currentImageIndex < images.length - 1) {
-                    currentImageIndex++;
-                    updateFullscreenImage();
-                }
-            } else if (touchEndX > touchStartX) {
-                // swipe right
-                if (currentImageIndex > 0) {
-                    currentImageIndex--;
-                    updateFullscreenImage();
-                }
-            }
-        }
-
         if (imageGrid) {
             createImageGrid();
         }
@@ -181,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => {
             if (viewer.classList.contains('active')) {
                 updateFullscreenImage();
+                updateNavStyles();
             }
         });
 
