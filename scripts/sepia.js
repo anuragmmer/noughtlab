@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let isColorChanged = false;
 
     h1Elements.forEach(function(h1) {
+        h1.setAttribute("title", "Click to enable read mode");
+
         h1.addEventListener("click", function() {
             targetElements.forEach(function(element) {
                 element.style.color = isColorChanged ? "" : "#C48C5B";
@@ -15,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             isColorChanged = !isColorChanged;
+            h1.setAttribute("title", isColorChanged ? "Click to disable read mode" : "Click to enable read mode");
         });
     });
 });
