@@ -25,6 +25,40 @@ body.dark-mode {
     --bg-color-rgb: 22, 22, 22;
     --text-color-rgb: 247, 247, 247;
 }
+
+/* WebKit Browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 2px; 
+}
+
+::-webkit-scrollbar-track {
+    background: #16161600; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a; 
+}
+
+/* Firefox */
+html {
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #16161600; 
+}
+
+/* For Edge and Internet Explorer (using vendor prefixes) */
+@-ms-viewport {
+    width: device-width;
+}
+
+.ms-scrollbar {
+    scrollbar-color: #888 #16161600; 
+}
+
 .intro-section {
     height: 100vh;
     display: flex;
