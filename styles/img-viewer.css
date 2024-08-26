@@ -125,6 +125,7 @@
     color: #f7f7f7;
     font-size: 1em;
     z-index: 1001;
+    user-select: none;
 }
 
 .close-button {
@@ -137,4 +138,5 @@
     padding: 10px;
     user-select: none;
     z-index: 1001;
+    user-select: none;
 }
