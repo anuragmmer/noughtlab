@@ -3,46 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5;url=https://noughtlab.com">
-    <title>404 Not Found</title>
+    <meta http-equiv="refresh" content="8;url=https://noughtlab.com">
+    <title>404 - Page Not Found</title>
     <style>
         body {
-            background-color: #161616;
-            color: #cf2323;
             font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            color: #161616;
+            max-width: 45em;
+            padding: 1em;
+            margin: auto;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            background-color: #161616;
+            justify-content: center;
             height: 100vh;
-            margin: 0;
-            text-align: center;
-            overflow: hidden;
-            padding: 20px;
-            box-sizing: border-box;
+            
         }
         .message {
-            font-size: 1.5rem;
-            animation: fadeInOut 1s ease-in-out;
-            max-width: 80%;
+            background-color: #161616;
+            color: #fa0000;
+            padding: 0.5em 1em;
+            text-align: center;
         }
 
-        
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .message p {
+            margin-top: 2.6vh;
+
         }
-        @media (max-width: 600px) {
-            .message {
-                font-size: 1.2rem;
-                max-width: 80%
+
+        .message p2 {
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        .message a {
+            color: #66ff00;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-shadow: 0 0 5px #fff, 0 0 10px #ff2600;
+
+        }
+
+.shape {
+    width: 30px;
+    height: 30px;
+    background-image: linear-gradient(135deg, #ff5e5e, #b3b3b3, #ff7a7a);
+    background-size: 200% 200%;
+    position: relative;
+    animation: bounce 1s infinite, gradientMove 10s ease-in-out infinite;
+    transition: clip-path 0.1s ease;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+            }
+            50% {
+                transform: translateY(-100px);
+                animation-timing-function: ease-in;
             }
         }
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap');
     </style>
 </head>
 <body>
+    <div class="shape"></div>
     <div class="message">
-        [Error: 404] Nought in our name represents the beginning of something but this was at the end of our imagination!
+        <p2>Nought in our name represents the beginning of something
+        and you are at the end of our imagination!</p2>
+        <p><a href="https://noughtlab.com/">Land me home 🏠︎</a></p>
+        
     </div>
+
+    <script>
+        const shape = document.querySelector('.shape');
+        const shapes = [
+            'circle()', // Circle
+            'polygon(50% 0%, 0% 100%, 100% 100%)', // Triangle
+            'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', // Pentagon
+
+            'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)', // Septagon
+            'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' // Square
+        ];
+        
+        let lastShapeIndex = -1;
+
+        function getRandomShape() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * shapes.length);
+            } while (newIndex === lastShapeIndex);
+            
+            lastShapeIndex = newIndex;
+            return shapes[newIndex];
+        }
+
+        function changeShape() {
+            const randomShape = getRandomShape();
+            shape.style.clipPath = randomShape;
+        }
+
+        shape.addEventListener('animationiteration', changeShape);
+        changeShape(); // Initial shape set
+    </script>
 </body>
 </html>
