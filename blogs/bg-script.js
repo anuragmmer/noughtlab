@@ -1,45 +1,63 @@
 // script.js
 
-document.body.classList.add('dark-mode');
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM elements
+    const body = document.body;
     const header = document.querySelector('header');
     const headerTitle = document.getElementById('header-title');
     const logo = document.getElementById('logo');
     const themeToggle = document.getElementById('theme-toggle');
+    const mainTitle = document.querySelector('h1'); 
     const originalTitle = headerTitle.textContent;
+
+    // Initialize dark mode
+    body.classList.add('dark-mode');
 
     // Theme toggle functionality
     themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
+        body.classList.toggle('dark-mode');
     });
+
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 
     // Scroll effect
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
+        if (!isInViewport(mainTitle)) {
             header.classList.add('visible');
             headerTitle.style.display = 'block';
             logo.style.display = 'none';
         } else {
             header.classList.remove('visible');
-            headerTitle.textContent = originalTitle;
-            logo.style.display = 'none';
+            headerTitle.style.display = 'none';
+            logo.style.display = 'block';
         }
     });
 
+
     function handleBack(event) {
-        event.preventDefault(); // Prevent the default anchor behavior
+        event.preventDefault();
         const referrer = document.referrer;
         const currentDomain = window.location.origin;
-    
-        console.log('Referrer:', referrer);
-        console.log('Current Domain:', currentDomain);
-    
+
         if (referrer && referrer.startsWith(currentDomain)) {
-            console.log('Navigating back to the previous page.');
-            window.history.back(); // Go back to the previous page
+            window.history.back();
         } else {
-            console.log('Redirecting to the homepage.');
-            window.location.href = '/'; // Redirect to the homepage
+            window.location.href = '/';
         }
     }
+
+
+    const backButtons = document.querySelectorAll('.back-button');
+    backButtons.forEach(button => {
+        button.addEventListener('click', handleBack);
+    });
 });
