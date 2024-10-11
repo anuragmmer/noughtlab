@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         if (!isInViewport(mainTitle)) {
             header.classList.add('visible');
-            headerTitle.style.display = 'block';
+            headerTitle.style.display = 'none';
             logo.style.display = 'none';
         } else {
             header.classList.remove('visible');
             headerTitle.style.display = 'none';
-            logo.style.display = 'block';
+            logo.style.display = 'none';
         }
     });
 
