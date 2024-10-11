@@ -178,6 +178,9 @@ body.dark-mode {
         font-size: 1em;
         margin-top: 20px; 
     }
-    
+
+    .content p {
+        font-size: 1em;
+    }
 
 }
