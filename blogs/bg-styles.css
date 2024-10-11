@@ -154,10 +154,20 @@ body.dark-mode {
     body {
         padding: 20px; 
         margin-top: 25vh;
+        
+    }
+
+    .meta {
+        font-size: 0.8em;
+        margin-top: 1em;
     }
 
     h1 {
         font-size: 2.2em;
+    }
+
+    p {
+        font-size: 1em;
     }
 
     #header-title {
