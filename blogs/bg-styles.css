@@ -165,6 +165,7 @@ body.dark-mode {
     h1 {
         font-size: 2.2em;
         line-height: 1em
+        margin-bottom: 0.1em;
     }
 
     #header-title {
